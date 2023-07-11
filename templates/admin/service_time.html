@@ -1,0 +1,68 @@
+{% extends 'admin/base.html' %} {% block admin_block %} {% load static %}
+<div class="container">
+  <div class="row my-5">
+    <div class="offset-md-3 col-md-6">
+      <h1 class="d-inline-block">
+        <a
+          href="{% url 'service_time' %}"
+          class="decoration-none text-dark"
+          style="text-decoration: none"
+          >Service Time</a
+        >
+      </h1>
+      <a href="{% url 'add_service_time' %}" class="text-dark"
+        ><i
+          class="fa fa-plus-square fa-3x float-end d-inline-block text-primary"
+          aria-hidden="true"
+        ></i
+      ></a>
+      {% if message %}
+      <script>
+        setTimeout(() => {
+          <div class="alert alert-danger">{{ message }}</div>;
+        }, 3000);
+      </script>
+      {% endif %}
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Open</th>
+            <th scope="col">Close</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if services %} {% for service in services %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{service.open}}</td>
+            <td>{{service.close}}</td>
+            <td>
+              <a
+                href="{% url 'update_service_time' service.id %}"
+                class="btn btn-primary btm-sm"
+              >
+                <i class="fa fa-edit" aria-hidden="true"></i>
+              </a>
+              <form
+                action="{% url 'delete_service_time' service.id %}"
+                method="post"
+                class="d-inline-block"
+              >
+                {% csrf_token %}
+                <button class="btn btn-warning btm-sm" type="submit">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+
+          {% endfor %} {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

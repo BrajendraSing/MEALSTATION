@@ -1,0 +1,344 @@
+body,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-image: url("../images/background-image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+@font-face {
+    font-family: BeauRivage;
+    src: url("../fonts/BeauRivage-Regular.ttf");
+}
+
+@font-face {
+    font-family: Bitter-ExtraBold;
+    src: url("../fonts/Bitter-ExtraBoldItalic.ttf");
+}
+
+@font-face {
+    font-family: Bitter-Medium;
+    src: url("../fonts/Bitter-Medium.ttf");
+}
+
+@font-face {
+    font-family: Bitter-Regular;
+    src: url("../fonts/Bitter-Regular.ttf");
+}
+
+@font-face {
+    font-family: LibreBaskerville-Italic;
+    src: url("../fonts/LibreBaskerville-Italic.ttf");
+}
+
+@font-face {
+    font-family: LibreBaskerville-Bold;
+    src: url("../fonts/LibreBaskerville-Bold.ttf");
+}
+
+.z-index-9 {
+    z-index: 9;
+}
+
+.specification-menu h1 {
+    color: rgb(233, 158, 96);
+    font-weight: 700;
+}
+
+.text-green {
+    color: green;
+    font-weight: 600;
+}
+
+.text-orange {
+    color: rgb(253, 205, 45);
+    font-weight: 900;
+    overflow-y: hidden;
+}
+
+.bg-green {
+    background-color: rgb(49, 202, 49);
+}
+
+.specification-quotes {
+    margin-top: 160px;
+}
+
+.specification-quotes h1 {
+    font-size: 80px;
+    font-family: Bitter-ExtraBold;
+}
+
+.specification-quotes h1 span {
+    font-family: Bitter-ExtraBold;
+}
+
+.specification-quotes p {
+    font-size: 25px;
+    line-height: 30px;
+    font-family: Bitter-Regular;
+}
+
+.specification-boxs {
+    background-color: aliceblue;
+    border-radius: 30px;
+    height: auto;
+    margin: 50px 20px 50px auto;
+    padding: 40px 60px 40px 60px;
+}
+
+.specification-boxs * {
+    font-family: LibreBaskerville-Bold;
+}
+
+.specification-boxs .row p {
+    font-family: LibreBaskerville-Italic;
+}
+
+.specification-boxs .row {
+    margin-top: 20px;
+}
+
+.fw-900 {
+    font-weight: 900;
+    overflow-y: hidden;
+}
+
+.on-the-menu h1 {
+    font-family: Bitter-ExtraBold;
+}
+
+.on-the-menu button {
+    font-family: Bitter-Medium;
+}
+
+.on-the-menu-box img {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+
+}
+
+.on-the-menu-box button {
+    padding: 10px 30px;
+    width: 250px;
+    margin-bottom: 20px;
+    font-size: 35px;
+    font-family: BeauRivage;
+
+}
+
+.on-the-menu-box a {
+    font-family: BeauRivage;
+    text-decoration: none;
+    color: #000;
+}
+
+.about-us-img {
+    width: 70%;
+    height: 400px;
+    background-color: red;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.about-us-text h2 {
+    font-weight: 800;
+    font-size: 45px;
+    overflow-y: hidden;
+    color: #000;
+    margin-top: 70px;
+    font-family: Bitter-ExtraBold;
+}
+
+.about-us-text p {
+    font-size: 20px;
+    padding: 0 10px;
+    font-family: Bitter-Medium;
+}
+
+.contact-us-container h2 {
+    color: rgb(8, 219, 219);
+    font-weight: 800;
+    font-size: 45px;
+    font-size: 800;
+    font-family: Bitter-ExtraBold;
+}
+
+.contact-us-container h4 {
+    color: #fff;
+    margin-top: 35px;
+    font-family: Bitter-Medium;
+}
+
+.contact-us-container p {
+    color: #fff;
+    font-family: Bitter-Regular;
+}
+
+/* =============================== Main Course CSS Start ================================ */
+.page-title {
+    font-family: Bitter-ExtraBold;
+    font-size: 50px;
+    color: #000;
+}
+
+.main-course-item-container {
+    background-color: #fff;
+}
+
+.main-course-item-container img {
+    height: 180px;
+}
+
+.main-course-item-container h3 {
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-family: Bitter-ExtraBold;
+}
+
+.main-course-item-container span {
+    color: red;
+    font-family: Bitter-ExtraBold;
+}
+
+.add-item-button {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 800;
+    overflow-y: hidden;
+    font-family: Bitter-Medium;
+    margin-left: 30px;
+}
+
+.add-item-button a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* =============================== Main Course CSS End   ================================ */
+
+
+
+@media (max-width:980px) {
+    .specification-quotes {
+        margin-top: 0;
+    }
+
+    .specification-menu .row {
+        margin-top: 0;
+    }
+
+    .specification-quotes h1 {
+        font-size: 50px;
+    }
+
+    .specification-quotes p {
+        font-size: 20px;
+    }
+
+    .about-us-text {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width:880px) {}
+
+@media (max-width:680px) {
+    .specification-boxs .row {
+        margin-top: 5px;
+    }
+
+    .specification-boxs {
+        margin: 0;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    .specification-quotes {
+        margin-bottom: 30px;
+        padding: 15px;
+    }
+
+    .specification-quotes h1 {
+        font-size: 25px;
+
+    }
+
+    .specification-quotes p {
+        font-size: 15px;
+    }
+
+    .about-us-text {
+        padding: 0 40px;
+    }
+
+
+    /* ==============Main Course CSS Strat============ */
+
+    .page-title {
+        font-size: 30px;
+    }
+
+    .main-course-item-container img {
+        height: auto;
+    }
+
+    .main-course-item-container h3 {
+        padding: 0 20px;
+        margin-top: 20px;
+    }
+
+    .add-item-button {
+        font-weight: 800;
+        text-align: center;
+    }
+
+    /* ==============Main Course CSS End============ */
+
+}
+
+@media (max-width:480px) {
+
+    .specification-boxs img {
+        width: 20px;
+    }
+
+    .specification-boxs h5 {
+        font-size: 20px;
+    }
+
+    .specification-boxs p {
+        font-size: 15px;
+    }
+
+    .about-us-img {
+        height: 270px;
+    }
+
+    /* ==============Main Course CSS Strat============ */
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    .main-course-item-container img {
+        padding-right: 15px;
+    }
+
+    .main-course-item-container h3 {
+        font-size: 20px !important;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    /* ==============Main Course CSS End============ */
+}

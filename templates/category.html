@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
+            <h1 class="page-title">{%for category in category %}{{category.name}}{% endfor %}</h1>
+        </div>
+    </div>
+</div>
+
+{% include 'navbar.html' %}
+
+<div class="container-fluid" style="margin-top: 180px;">
+    <div class="row">
+
+        <div class="offset-md-4 col-md-8 col-12">
+            <div class="main-course-item-container">
+                {% for item in items %}
+                <div class="row p-2 mb-3" id="{{item.id}}">
+                    <div class="col-sm-3 col-12 pr-0 text-center">
+                        <img class="img img-fluid category-img-logo" src="{{item.image.url}}" alt="">
+                    </div>
+                    <div class="col-sm-9 col-12">
+                        <h3 class="font-weight-bold">{{item.name}} <span class="float-right pr-sm-5">Price -
+                                {{item.price|currency}}</span>
+                        </h3>
+                        <br>
+                        {% if request.session.customer_email %}
+                        {% if in_cart|availabe:item %}
+                        <small class="btn btn-sm btn-warning mb-2">In your cart</small>
+                        {% endif %}
+
+                        {% if stock|in_stock:item.name %}
+                        <form action="#{{item.id}}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{item.id}}">
+                            <input type="submit" value="Add Item+" class="btn btn-primary add-item-button text-black">
+                        </form>
+                        {% else %}
+
+                        <input type="button" value="Out Of Stock" class="btn btn-primary add-item-button text-black">
+                        {% endif %}
+                        {% else %}
+                        <a href="/login"><button class="btn btn-primary add-item-button text-black">Login
+                                Required</button></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+
+                <!-- <div class="row p-2 mb-3">
+                    <div class="col-sm-3 col-12 pr-0">
+                        <img class="img img-fluid" src="../static/images/main_course_image1.jpeg" alt="">
+                    </div>
+                    <div class="col-sm-9 col-12">
+                        <h3 class="font-weight-bold">Chola Bhature <span class="float-right pr-sm-5">Rs: 50</span>
+                        </h3>
+                        <br>
+                        <h5 class="add-item-button"><a href="#">Add Item+</a></h5>
+                    </div>
+                </div>
+                <hr> -->
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

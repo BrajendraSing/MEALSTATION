@@ -1,0 +1,139 @@
+{% extends 'admin/base.html' %} {% block admin_block %} {% load static %}
+<div class="container">
+  <div class="row my-5">
+    <div class="offset-md-3 col-md-6">
+      <h1 class="d-inline-block">
+        <a
+          href="{% url 'item' 'all' %}"
+          class="decoration-none text-dark"
+          style="text-decoration: none"
+          >Items</a
+        >
+      </h1>
+      <a href="{% url 'add_item' %}" class="text-dark"
+        ><i
+          class="fa fa-plus-square fa-3x float-end d-inline-block text-primary"
+          aria-hidden="true"
+        ></i
+      ></a>
+      {% if message %}
+      <script>
+        setTimeout(() => {
+          <div class="alert alert-danger">{{ message }}</div>;
+        }, 3000);
+      </script>
+      {% endif %}
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">
+              <a class="text-white" href="#" id="name"> Name </a>
+            </th>
+            <th scope="col">
+              <a class="text-white" href="#" id="price">Price</a>
+            </th>
+            <th scope="col">
+              <a class="text-white" href="#" id="stock">Stock</a>
+            </th>
+            <th scope="col">Image</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if items %} {% for item in items %}
+          <tr class="{% if item.stock == 'NO' %}table-danger{% endif %}">
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.stock}}</td>
+            <td>
+              <img
+                width="100"
+                hight="100"
+                src="{{item.image.url}}"
+                alt="Images"
+              />
+            </td>
+            <td>{{item.category}}</td>
+
+            <td>
+              <a
+                href="{% url 'update_item' item.id %}"
+                class="btn btn-primary btm-sm"
+              >
+                <i class="fa fa-edit" aria-hidden="true"></i>
+              </a>
+              <form
+                action="{% url 'delete_item' item.id %}"
+                method="post"
+                class="d-inline-block"
+              >
+                {% csrf_token %}
+                <button class="btn btn-warning btm-sm" type="submit">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+
+          {% endfor %} {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div style="display: none" id="filter_url">{{filter_url}}</div>
+<script>
+  var filter_url = document.getElementById("filter_url").innerHTML;
+  document.getElementById("name").addEventListener("click", function () {
+    if (
+      filter_url === "/admin/item/all" ||
+      filter_url === "/admin/item/names" ||
+      filter_url === "/admin/item/price" ||
+      filter_url === "/admin/item/prices" ||
+      filter_url === "/admin/item/stock" ||
+      filter_url === "/admin/item/stocks"
+    ) {
+      this.href = "name";
+    }
+    if (filter_url === "/admin/item/name") {
+      this.href = "names";
+    }
+  });
+
+  document.getElementById("price").addEventListener("click", function () {
+    if (filter_url === "/admin/item/price") {
+      this.href = "prices";
+    }
+    if (
+      filter_url === "/admin/item/all" ||
+      filter_url === "/admin/item/prices" ||
+      filter_url === "/admin/item/name" ||
+      filter_url === "/admin/item/names" ||
+      filter_url === "/admin/item/stock" ||
+      filter_url === "/admin/item/stocks"
+    ) {
+      this.href = "price";
+    }
+  });
+
+  document.getElementById("stock").addEventListener("click", function () {
+    if (filter_url === "/admin/item/stock") {
+      this.href = "stocks";
+    }
+    if (
+      filter_url === "/admin/item/all" ||
+      filter_url === "/admin/item/stocks" ||
+      filter_url === "/admin/item/name" ||
+      filter_url === "/admin/item/names" ||
+      filter_url === "/admin/item/price" ||
+      filter_url === "/admin/item/prices"
+    ) {
+      this.href = "stock";
+    }
+  });
+</script>
+{% endblock %}

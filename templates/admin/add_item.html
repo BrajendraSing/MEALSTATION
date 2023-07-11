@@ -1,0 +1,50 @@
+{% extends 'admin/base.html' %} {% load django_bootstrap5 %} {% comment %} Block
+Start here {% endcomment %} {% block admin_block %}
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        class="offset-md-3 col-md-6 text-black my-5 bg-dark text-white border rounded"
+      >
+        <div class="px-5 ms-xl-4 mt-2 p-2">
+          <span class="h1 fw-bold mb-0">
+            <i class="{{icon}}" aria-hidden="true"></i>
+            {{title}} Item
+          </span>
+        </div>
+        {% if success %}
+        <div class="alert alert-success">Item {{message}} Successfully</div>
+        <script>
+          setTimeout(() => {
+           location.href = '{% url 'item' 'all' %}'
+          }, 2000);
+        </script>
+        {% endif %} {% if error %}
+        <div class="alert alert-danger">{{message}}</div>
+        {% endif %}
+        <div
+          class="d-flex align-items-center justify-content-center h-custom-2 px-5 ms-xl-4 mt-2 pt-2 pt-xl-0 mt-xl-n5"
+        >
+          <form
+            style="width: 23rem"
+            method="post"
+            action="{{url}}"
+            enctype="multipart/form-data"
+          >
+            {% csrf_token %} {% if form %} {% bootstrap_form form %} {% endif %}
+            <div class="pt-1 mb-4">
+              <button class="btn btn-info btn-lg" type="submit">
+                {% if title %}{{title}}{% endif %}
+              </button>
+              <button class="btn btn-danger btn-lg float-end" type="reset">
+                RESET
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock admin_block %}

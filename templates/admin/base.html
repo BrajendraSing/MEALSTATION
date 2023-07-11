@@ -1,0 +1,116 @@
+{% load static %} {% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MEALSTATION | ADMIN</title>
+    {% bootstrap_css %}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{% static '/CSS/admin/style.css' %}" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MEALSTATION | ADMIN</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarID"
+          aria-controls="navbarID"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse d-flex justify-content-between"
+          id="navbarID"
+        >
+          <div class="navbar-nav">
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{% url 'dashboard' %}"
+            >
+              Home
+            </a>
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{% url 'order' %}"
+            >
+              Order
+            </a>
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{% url 'admin' %}"
+            >
+              Admin
+            </a>
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{% url 'category' %}"
+            >
+              Category
+            </a>
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{% url 'item' 'all' %}"
+            >
+              Item
+            </a>
+
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{% url 'service_time' %}"
+            >
+              Service-Time
+            </a>
+          </div>
+          <div class="navbar-nav">
+            {% if request.session.admin_session_name %}
+            <a
+              class="nav-link text-dark disabled bg-light bg-gradient rounded d-md-inline-block mx-3"
+            >
+              Welcome : {{request.session.admin_session_name}}
+            </a>
+            <a
+              class="nav-link text-white d-md-inline-block bg-danger bg-gradient rounded"
+              href="{% url 'admin_logout' %}"
+            >
+              Logout
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {% block admin_block %} {% endblock %}
+
+    <div
+      class="container-fluid bg-dark text-center text-white"
+      style="margin-top: 100px"
+    >
+      all copyright &#169; reserved | MEALSTATION
+    </div>
+    {% bootstrap_javascript %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

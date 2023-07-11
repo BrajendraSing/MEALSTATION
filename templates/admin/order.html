@@ -1,0 +1,81 @@
+{% extends 'admin/base.html' %} {% block admin_block %} {% load static %}
+<div class="container">
+  <div class="row my-5">
+    <div class="offset-md-1 col-md-10">
+      <h1 class="d-inline-block">
+        <a
+          href="{% url 'order'%}"
+          class="decoration-none text-dark"
+          style="text-decoration: none"
+          >Orders</a
+        >
+      </h1>
+      {% if message %}
+      <script>
+        setTimeout(() => {
+          <div class="alert alert-danger"> {{ message }} </div>;
+        }, 3000);
+      </script>
+      {% endif %}
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Id</th>
+            <th scope="col"> Quantity
+            </th>
+            <th scope="col">Price
+            </th>
+            <th scope="col">Date
+            </th>
+            <th scope="col">Customer_id</th>
+            <th scope="col">Item_id</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Status</th>
+            <th scope="col">Total</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          {% if orders %} {% for order in orders %}
+          <tr>
+            <th><input type="checkbox" name="" /></th>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{order.quantity}}</td>
+            <td>{{order.price}}</td>
+            <td>{{order.date}}</td>
+            <td>{{order.customer_id}}</td>
+            <td>{{order.item_id}}</td>
+            <td>{{order.mobile}}</td>
+            <td>{{order.status}}</td>
+            <td>{{order.total}}</td>
+
+            <td>
+              <a
+                href="{% url 'update_order' order.id %}"
+                class="btn btn-primary btm-sm"
+              >
+                <i class="fa fa-edit" aria-hidden="true"></i>
+              </a>
+              <form
+                action="{% url 'delete_order' order.id %}"
+                method="post"
+                class="d-inline-block"
+              >
+                {% csrf_token %}
+                <button class="btn btn-warning btm-sm" type="submit">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+
+          {% endfor %} {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

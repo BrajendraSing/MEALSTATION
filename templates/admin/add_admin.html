@@ -1,0 +1,111 @@
+{% extends 'admin/base.html' %} {% block admin_block %}
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        class="offset-md-3 col-md-6 text-black my-5 bg-dark text-white border rounded"
+      >
+        <div class="px-5 ms-xl-4 mt-2 p-2">
+          <span class="h1 fw-bold mb-0">
+            <i class="{{icon}}" aria-hidden="true"></i>
+            {{title}} ADMIN
+          </span>
+        </div>
+        {% if success %}
+        <div class="alert alert-success">Admin {{message}} Successfully</div>
+        <script>
+          setTimeout(() => {
+           location.href = '{% url 'admin' %}';
+          }, 3000);
+        </script>
+        {% endif %} {% if error %}
+        <div class="alert alert-danger">Something went wrong</div>
+        {% endif %}
+        <div
+          class="d-flex align-items-center justify-content-center h-custom-2 px-5 ms-xl-4 mt-2 pt-2 pt-xl-0 mt-xl-n5"
+        >
+          <form style="width: 23rem" method="post" action="{{url}}">
+            {% csrf_token %} {% if fields.name %}
+            <div class="form-outline mb-3 align-item-center">
+              <label class="form-label" for="name"> Name </label>
+              <input
+                type="text"
+                id="name"
+                class="form-control form-control-lg"
+                name="name"
+                value="{% if name %}{{name}}{% endif %}{% if admin %}{{admin.0.name}}{% endif %}"
+              />
+              <strong>
+                <label class="text-danger" for="name">
+                  {% if name_error %}{{name_error}}{% endif %}
+                </label>
+              </strong>
+            </div>
+            {% endif %} {% if fields.email %}
+            <div class="form-outline mb-3">
+              <label class="form-label" for="form2Example18">
+                Email address
+              </label>
+              <input
+                type="text"
+                id="email"
+                class="form-control form-control-lg"
+                name="email"
+                value="{% if email %}{{email}}{% endif %}{% if admin %}{{admin.0.email}}{% endif %}"
+              />
+              <strong>
+                <label class="text-danger" for="name">
+                  {% if email_error %}{{email_error}}{% endif %}
+                </label>
+              </strong>
+            </div>
+            {% endif %} {% if fields.password %}
+            <div class="form-outline mb-3">
+              <label class="form-label" for="form2Example28">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control form-control-lg"
+                name="password"
+              />
+              <strong>
+                <label class="text-danger" for="name">
+                  {% if password_error %}{{password_error}}{% endif %}
+                </label>
+              </strong>
+            </div>
+            {% endif %} {% if fields.c_password %}
+            <div class="form-outline mb-3">
+              <label class="form-label" for="form2Example28"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                id="confirmPassword"
+                class="form-control form-control-lg"
+                name="confirmPassword"
+              />
+              <strong>
+                <label class="text-danger" for="name">
+                  {% if c_password_error %}{{c_password_error}}{% endif %}
+                </label>
+              </strong>
+            </div>
+            {% endif %}
+
+            <div class="pt-1 mb-4">
+              <button class="btn btn-info btn-lg" type="submit">
+                {% if title %}{{title}}{% endif %}
+              </button>
+              <button class="btn btn-danger btn-lg float-end" type="reset">
+                RESET
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+.cart-image {
+    width: 100px;
+    height: 100px;
+}
+
+.line-height-100 {
+    line-height: 50px;
+}
+
+@media (max-width:680px) {
+    .line-height-100 {
+        line-height: 30px;
+    }
+
+    body {
+        overflow-x: scroll !important;
+        overflow-y: scroll !important;
+        -webkit-overflow-x: scroll !important;
+        -webkit-overflow-y: scroll !important;
+    }
+
+
+}
